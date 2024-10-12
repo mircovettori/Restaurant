@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,8 +31,8 @@ public class RestaurantService {
   RestaurantRepository restaurantRepository;
 
   @Transactional
-  public List<Restaurant> getRestaurants() {
-    return restaurantRepository.findAll();
+  public List<Restaurant> getRestaurants(Specification<Restaurant> spec, Sort sort) {
+    return restaurantRepository.findAll(spec, sort);
   }
 
   @Transactional

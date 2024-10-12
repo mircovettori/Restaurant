@@ -3,7 +3,14 @@ package restaurant.api;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import net.kaczmarzyk.spring.data.jpa.domain.Between;
+import net.kaczmarzyk.spring.data.jpa.domain.Equal;
+import net.kaczmarzyk.spring.data.jpa.domain.In;
+import net.kaczmarzyk.spring.data.jpa.domain.Like;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import restaurant.domain.Restaurant;
 import restaurant.dto.RestaurantDto;
 import restaurant.service.RestaurantService;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.And;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,8 +42,13 @@ public class RestaurantController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Restaurant>> getAllRestaurants() {
-    List<Restaurant> restaurants = restaurantService.getRestaurants();
+  public ResponseEntity<List<Restaurant>> getAllRestaurants(
+          @And({
+                  @Spec(path = "province", params = "province", spec = Like.class)
+          }) Specification<Restaurant> spec,
+          Sort sort
+  ) {
+    List<Restaurant> restaurants = restaurantService.getRestaurants(spec, sort);
     return ResponseEntity.ok(restaurants);
   }
 
