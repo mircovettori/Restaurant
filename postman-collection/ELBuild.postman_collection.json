@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "4c7174b7-48d8-467f-93cc-9bcc9317c050",
+		"name": "ELBuild",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37491287"
+	},
+	"item": [
+		{
+			"name": "restaurant",
+			"item": [
+				{
+					"name": "importFromJson",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/mvettori/Downloads/Regione-Toscana---Elenco-dei-ristoranti-e-botteghe.json"
+								}
+							]
+						},
+						"url": "http://localhost:8080/restaurant/import"
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ccomune\":\"Montecarlo\",\r\n    \"cprovincia\":\"LUCCA\",\r\n    \"ctipologia\":\"Ristorante\",\r\n    \"cnome\":\"Buca Del Norcino\",\r\n    \"cvia\":\"Piazza Vittoria, 7\",\r\n    \"ccitta\":\"MONTECARLO\",\r\n    \"ccap\":\"55015\",\r\n    \"cindirizzo_posta_elettronica\":\"\",\r\n    \"corgano_validante\":\"\",\r\n    \"ctelefono\":\"0583\",\r\n    \"cfax\":\"\",\r\n    \"clatitudine\":\"44.208615\",\r\n    \"clongitudine\":\"9.968547\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/restaurant"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"d2b4de41-1a57-42bf-b804-a9abb31fa63b\",\r\n    \"ccomune\":\"Montecarlo\",\r\n    \"cprovincia\":\"LUCCA\",\r\n    \"ctipologia\":\"Ristorante\",\r\n    \"cnome\":\"Buca Del Norcino\",\r\n    \"cvia\":\"Piazza Vittoria, 7\",\r\n    \"ccitta\":\"MONTECARLO\",\r\n    \"ccap\":\"55015\",\r\n    \"cindirizzo_posta_elettronica\":\"\",\r\n    \"corgano_validante\":\"\",\r\n    \"ctelefono\":\"0583\",\r\n    \"cfax\":\"\",\r\n    \"clatitudine\":\"44.208615\",\r\n    \"clongitudine\":\"9.968547\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/restaurant"
+					},
+					"response": []
+				},
+				{
+					"name": "getRestaurantsWithParams",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurant?province=MASSA&sort=latitude,desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurant"
+							],
+							"query": [
+								{
+									"key": "province",
+									"value": "MASSA"
+								},
+								{
+									"key": "sort",
+									"value": "latitude,desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRestaurant",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "http://localhost:8080/restaurant"
+					},
+					"response": []
+				},
+				{
+					"name": "getRestaurantsById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "http://localhost:8080/restaurant/d2b4de41-1a57-42bf-b804-a9abb31fa63b"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRestaurantsById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "http://localhost:8080/restaurant/20edd8ed-2ff8-410c-9a17-d46bef7205a0"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
